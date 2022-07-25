@@ -1,6 +1,7 @@
 import { LoginBar } from './Components/LoginBar';
 import { MainWindow } from './Components/MainWindow';
 import { StatusBar } from './Components/StatusBar';
+// eslint-disable-next-line no-unused-vars
 import firebase from './FirebaseConfig';
 import './App.css';
 
