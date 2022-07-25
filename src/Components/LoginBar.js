@@ -3,6 +3,7 @@ import classes from './LoginBar.module.css';
 export const LoginBar = props => {
   const { user, setUser, userlist } = props;
   console.log(userlist);
+  console.log(setUser);
   return (
     <div className={classes.loginBar}>
       {user ? (
