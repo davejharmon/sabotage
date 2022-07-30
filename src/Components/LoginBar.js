@@ -2,7 +2,7 @@ import { Button } from './Button';
 import classes from './LoginBar.module.css';
 import { useRef } from 'react';
 export const LoginBar = props => {
-  const { user, setUser, userlist } = props;
+  const { user, setUser, players } = props;
   const selectedUserRef = useRef();
 
   const loginHandler = e => {
@@ -29,10 +29,10 @@ export const LoginBar = props => {
           <div>Please log in...</div>
           <form name="loginForm" onSubmit={loginHandler}>
             <select id="userlist" name="userlist" ref={selectedUserRef}>
-              {userlist ? (
-                userlist.map((username, i) => (
-                  <option value={username} key={i}>
-                    {username}
+              {players ? (
+                players.map((player, i) => (
+                  <option value={player.displayName} key={i}>
+                    {player.displayName}
                   </option>
                 ))
               ) : (

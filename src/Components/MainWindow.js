@@ -3,12 +3,14 @@ import { Button } from './Button';
 import classes from './MainWindow.module.css';
 export const MainWindow = props => {
   const [selection, setSelection] = useState(null);
-  const { userlist, user, phase } = props;
+  const { players, user, phase } = props;
 
   const selectUserHandler = e => {
     setSelection(e.target.outerText);
   };
-  const votelist = userlist.filter(username => username !== user);
+  const playerlist = players.map(player => player.displayName);
+  const votelist = playerlist.filter(player => player !== user);
+
   return (
     <div className={classes.window}>
       <div>{phase}</div>

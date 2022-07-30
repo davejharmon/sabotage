@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-
+import { getFirestore } from 'firebase/firestore';
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -14,9 +14,4 @@ const config = {
 console.log('initialising firebase...');
 const app = initializeApp(config);
 
-// CODE FROM UDEMY
-// if (!firebase.apps.length) {
-//   firebase.initializeApp(config);
-// }
-
-export default app;
+export const firestore = getFirestore(app);
