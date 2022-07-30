@@ -33,7 +33,7 @@ function App() {
   }, [userNum]);
 
   return (
-    <div className="AppContainer">
+    <div>
       {(loading || gloading) && <p>LOADING...</p>}
       {(error || gerror) && <p>ERROR...</p>}
       {players && (
