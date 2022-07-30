@@ -1,3 +1,5 @@
+import classes from './StatusBar.module.css';
+
 export const StatusBar = () => {
-  return <div>You are a villager</div>;
+  return <div className={classes.status}>You are a villager</div>;
 };

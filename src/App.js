@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <LoginBar user={user} setUser={setUser} userlist={USER_LIST} />
-      <MainWindow phase={phase} />
+      <MainWindow phase={phase} user={user} userlist={USER_LIST} />
       <StatusBar />
     </div>
   );

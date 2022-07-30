@@ -3,3 +3,15 @@
   color: white;
   font-size: 3rem;
 }
+
+.voteSelector {
+  color: orange;
+  list-style: none;
+  padding-left: 0;
+}
+
+.voteSelector .selected {
+  background-color: darkred;
+  color: white;
+  font-style: italic;
+}

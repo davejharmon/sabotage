@@ -3,7 +3,7 @@ export const Button = props => {
   const { clickHandler } = props;
   return (
     <button type="button" onClick={clickHandler} className={classes.button}>
-      {props.type}
+      {props.children}
     </button>
   );
 };

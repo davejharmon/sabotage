@@ -22,7 +22,7 @@ export const LoginBar = props => {
         <div className={classes.loginBar}>
           <div>Logged in as:</div>
           <div className={classes.loggedInAs}>{user}</div>
-          <Button type="Logout" clickHandler={logoutHandler} />
+          <Button clickHandler={logoutHandler}>Logout</Button>
         </div>
       ) : (
         <div className={classes.loginBar}>
