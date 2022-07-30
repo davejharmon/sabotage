@@ -2,9 +2,8 @@ import { Button } from './Button';
 import classes from './LoginBar.module.css';
 import { useRef } from 'react';
 export const LoginBar = props => {
-  const { user, setUser, players } = props;
+  const { username, setUser, players, turn } = props;
   const selectedUserRef = useRef();
-
   const loginHandler = e => {
     e.preventDefault();
     console.log('login clicked');
@@ -18,10 +17,11 @@ export const LoginBar = props => {
 
   return (
     <div>
-      {user ? (
+      {username ? (
         <div className={classes.loginBar}>
+          {turn && <div className={classes.turnNumber}>turn: {turn}</div>}
           <div>Logged in as:</div>
-          <div className={classes.loggedInAs}>{user}</div>
+          <div className={classes.loggedInAs}>{username}</div>
           <Button clickHandler={logoutHandler}>Logout</Button>
         </div>
       ) : (
@@ -31,7 +31,7 @@ export const LoginBar = props => {
             <select id="userlist" name="userlist" ref={selectedUserRef}>
               {players ? (
                 players.map((player, i) => (
-                  <option value={player.displayName} key={i}>
+                  <option value={i} key={i}>
                     {player.displayName}
                   </option>
                 ))

@@ -1,45 +1,56 @@
-import { useCollectionData } from 'react-firebase-hooks/firestore';
+import {
+  useCollectionData,
+  useDocumentData,
+} from 'react-firebase-hooks/firestore';
 import { LoginBar } from './Components/LoginBar';
 import { MainWindow } from './Components/MainWindow';
 import { StatusBar } from './Components/StatusBar';
 import { useState, useEffect } from 'react';
-import { collection } from 'firebase/firestore';
-// eslint-disable-next-line no-unused-vars
+import { collection, doc } from 'firebase/firestore';
 import { firestore } from './FirebaseConfig';
 import './App.css';
 
 function App() {
-  const [user, setUser] = useState(null);
-  // eslint-disable-next-line no-unused-vars
-  const [phase, setPhase] = useState('awaitingvote');
+  const [userNum, setUserNum] = useState(null);
   const [players, loading, error] = useCollectionData(
     collection(firestore, 'players')
+  );
+
+  const [gameState, gloading, gerror] = useDocumentData(
+    doc(firestore, 'game', 'state')
   );
 
   useEffect(() => {
     console.log('Initial load');
     const localUser = localStorage.getItem('user');
-    console.log(localUser);
-    // TODO: NEXT STEP: Make User a user number showing position in array.
-    if (localUser !== 'null') setUser(localStorage.getItem('user'));
+    if (localUser !== 'null') setUserNum(localStorage.getItem('user'));
   }, []);
 
   useEffect(() => {
     console.log('User has changed, updating useEffect');
     const localUser = localStorage.getItem('user');
-    if (localUser !== user) localStorage.setItem('user', user);
-  }, [user]);
+    if (localUser !== userNum) localStorage.setItem('user', userNum);
+  }, [userNum]);
 
   return (
-    <div className="App">
-      {loading && <p>LOADING...</p>}
-      {error && <p>ERROR...</p>}
+    <div className="AppContainer">
+      {(loading || gloading) && <p>LOADING...</p>}
+      {(error || gerror) && <p>ERROR...</p>}
       {players && (
-        <div>
-          {console.log(players)}
-          <LoginBar user={user} setUser={setUser} players={players} />
-          <MainWindow phase={phase} user={user} players={players} />
-          <StatusBar />
+        <div className="App">
+          {console.log(gameState)}
+          <LoginBar
+            username={players[userNum]?.displayName}
+            setUser={setUserNum}
+            players={players}
+            turn={gameState.turn}
+          />
+          <MainWindow
+            phase={gameState.phase}
+            userNum={userNum}
+            players={players}
+          />
+          <StatusBar role={players[userNum]?.role} />
         </div>
       )}
     </div>

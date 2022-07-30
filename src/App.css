@@ -3,4 +3,5 @@
   flex-flow: column nowrap;
   justify-content: space-between;
   background-color: #666;
+  height: 88vh;
 }

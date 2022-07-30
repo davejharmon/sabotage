@@ -1,5 +1,11 @@
 import classes from './StatusBar.module.css';
 
-export const StatusBar = () => {
-  return <div className={classes.status}>You are a villager</div>;
+export const StatusBar = props => {
+  const { role } = props;
+  return (
+    <div className={classes.status}>
+      {role && <div>You are a {role}</div>}
+      {!role && <div>You have no role</div>}
+    </div>
+  );
 };
